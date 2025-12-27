@@ -1,0 +1,28 @@
+let balance = 1000000;
+let timer = 20;
+let interval;
+
+function startTimer() {
+  interval = setInterval(() => {
+    timer--;
+    document.getElementById("timer").innerText = timer;
+
+    if (timer <= 0) {
+      clearInterval(interval);
+      timer = 20;
+      document.getElementById("timer").innerText = timer;
+    }
+  }, 1000);
+}
+
+function placeBet() {
+  let win = Math.random() < 0.4; // احتمال محسوب
+  let change = win ? 20000 : -20000;
+  balance += change;
+
+  if (balance <= 0) balance = 1000000;
+
+  document.getElementById("balance").innerText = balance.toLocaleString();
+}
+
+startTimer();
